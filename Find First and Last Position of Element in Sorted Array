@@ -1,0 +1,56 @@
+class Solution {
+    public static int first(int nums[],int target){
+        int n=nums.length;
+        int first=-1;
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                first=mid;
+                high=mid-1;
+            }
+            else if(nums[mid]>target){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return first;
+    }
+    public static int last(int nums[],int target){
+        int n=nums.length;
+        int last=-1;
+        int low=0;
+        int high=n-1;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            if(nums[mid]==target){
+                last=mid;
+                low=mid+1;
+            }
+            else if(nums[mid]<target){
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        return high;
+    }
+    public int[] searchRange(int[] nums, int target) {
+        int temp[]=new int[2];
+        temp[0]=-1;
+        temp[1]=-1;
+        int f=first(nums,target);
+        if(f==-1){
+            return temp;
+        }
+        int l=last(nums,target);
+        temp[0]=f;
+        temp[1]=l;
+        return temp;
+
+
+    }
+}
